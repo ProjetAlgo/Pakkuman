@@ -1,48 +1,99 @@
 package system;
 public class Square {
-	public final static int EMPTY = 0;
-	public final static int PAKKUMAN = 1;
-	public final static int MONSTER = 2;
-	public final static int CANDY = 3;
+	private final static int EMPTY = 0;
+	private final static int PAKKUMAN = 1;
+	private final static int MONSTER = 2;
+	private final static int CANDY = 3;
 	private int content;
 	private boolean northOpen, westOpen, southOpen, eastOpen;
 	
 	public Square () {
-		setContent(EMPTY);
-		setNorthOpen(false);
-		setWestOpen(false);
-		setSouthOpen(false);
-		setEastOpen(false);
+		setEmpty();
+		setNorthClosed();
+		setWestClosed();
+		setSouthClosed();
+		setEastClosed();
 	}
 	
-	public int getContent() {
-		return content;
+	public void setEmpty() {
+		this.content = EMPTY;
 	}
-	public void setContent(int content) {
-		this.content = content;
+	
+	public void setPakkuman() {
+		this.content = PAKKUMAN;
 	}
+	
+	public void setMonster() {
+		this.content = MONSTER;
+	}
+	
+	public void setCandy() {
+		this.content = CANDY;
+	}
+	
+	public void setNorthOpen() {
+		this.northOpen = true;
+	}
+	
+	public void setWestOpen() {
+		this.westOpen = true;
+	}
+	
+	public void setSouthOpen() {
+		this.southOpen = true;
+	}
+	
+	public void setEastOpen() {
+		this.eastOpen = true;
+	}
+	
+	public void setNorthClosed() {
+		this.northOpen = false;
+	}
+	
+	public void setWestClosed() {
+		this.westOpen = false;
+	}
+	
+	public void setSouthClosed() {
+		this.southOpen = false;
+	}
+	
+	public void setEastClosed() {
+		this.eastOpen = false;
+	}
+	
+	public boolean isEmpty() {
+		return content == EMPTY;
+	}
+	
+	public boolean hasPakkuman() {
+		return content == PAKKUMAN;
+	}
+	
+	public boolean hasMonster() {
+		return content == MONSTER;
+	}
+	
+	public boolean hasCandy() {
+		return content == CANDY;
+	}
+	
 	public boolean isNorthOpen() {
 		return northOpen;
 	}
-	public void setNorthOpen(boolean northOpen) {
-		this.northOpen = northOpen;
-	}
+
 	public boolean isWestOpen() {
 		return westOpen;
 	}
-	public void setWestOpen(boolean westOpen) {
-		this.westOpen = westOpen;
-	}
+
 	public boolean isSouthOpen() {
 		return southOpen;
 	}
-	public void setSouthOpen(boolean southOpen) {
-		this.southOpen = southOpen;
-	}
+
 	public boolean isEastOpen() {
 		return eastOpen;
 	}
-	public void setEastOpen(boolean eastOpen) {
-		this.eastOpen = eastOpen;
-	}
+
+
 }

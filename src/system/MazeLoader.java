@@ -14,9 +14,9 @@ public class MazeLoader {
 	
 	public static Square[][] loadMaze(String filePath) {
 		convertFile(filePath);
-		maze = new Square[mazeWidth][mazeHeight];
-		for (int i=0; i<mazeWidth; i++) {
-			for (int j=0; j<mazeHeight; j++) {
+		maze = new Square[mazeHeight][mazeWidth];
+		for (int i=0; i<mazeHeight; i++) {
+			for (int j=0; j<mazeWidth; j++) {
 				maze[i][j] = new Square();
 			}
 		}
@@ -76,10 +76,10 @@ public class MazeLoader {
 						int yIndexN = (i/2)-1;
 						int yIndexS = i/2;
 						if (yIndexN >= 0) {
-							maze[xIndex][yIndexN].setSouthOpen(true);
+							maze[yIndexN][xIndex].setSouthOpen();
 						}
 						if (yIndexS < mazeHeight) {
-							maze[xIndex][yIndexS].setNorthOpen(true);
+							maze[yIndexS][xIndex].setNorthOpen();
 						}
 					}
 					else { // ouvertures W-E
@@ -88,10 +88,10 @@ public class MazeLoader {
 							int xIndexE = j/4;
 							int yIndex = (i-1)/2;
 							if (xIndexW >= 0) {
-								maze[xIndexW][yIndex].setEastOpen(true);
+								maze[yIndex][xIndexW].setEastOpen();
 							}
 							if (xIndexE < mazeWidth) {
-								maze[xIndexE][yIndex].setWestOpen(true);
+								maze[yIndex][xIndexE].setWestOpen();
 							}
 						}
 					}
@@ -104,19 +104,19 @@ public class MazeLoader {
 		Integer[] pakkumanLoc = getPakkumanLocation();
 		List<Integer[]> monsterLocs = getMonsterLocations();
 		List<Integer[]> candyLocs = getCandyLocations();
-		maze[pakkumanLoc[0]][pakkumanLoc[1]].setContent(Square.PAKKUMAN);
+		maze[pakkumanLoc[0]][pakkumanLoc[1]].setPakkuman();
 		for (Integer[] monsterLoc : monsterLocs) {
-			maze[monsterLoc[0]][monsterLoc[1]].setContent(Square.MONSTER);
+			maze[monsterLoc[0]][monsterLoc[1]].setMonster();
 		}
 		for (Integer[] candyLoc : candyLocs) {
-			maze[candyLoc[0]][candyLoc[1]].setContent(Square.CANDY);
+			maze[candyLoc[0]][candyLoc[1]].setCandy();
 		}
 	}
 	
 	private static Integer[] getPakkumanLocation() {
 		int y = Integer.valueOf(String.valueOf(dataLines.get(4).charAt(12)));
 		int x = Integer.valueOf(String.valueOf(dataLines.get(4).charAt(14)));
-		Integer[] pakkumanLoc = {x,y};
+		Integer[] pakkumanLoc = {y,x};
 		return pakkumanLoc;
 	}
 	
@@ -127,7 +127,7 @@ public class MazeLoader {
 		for (int i=0; i<monsterAmount; i++) {
 			int y = Integer.valueOf(String.valueOf(dataLines.get(5).charAt(12+step)));
 			int x = Integer.valueOf(String.valueOf(dataLines.get(5).charAt(14+step)));
-			Integer[] monsterLoc = {x,y};
+			Integer[] monsterLoc = {y,x};
 			monsterLocs.add(monsterLoc);
 			step = step + 6;
 		}
@@ -146,7 +146,7 @@ public class MazeLoader {
 		for (int i=0; i<candyAmount; i++) {
 			int y = Integer.valueOf(String.valueOf(dataLines.get(6).charAt(11+step)));
 			int x = Integer.valueOf(String.valueOf(dataLines.get(6).charAt(13+step)));
-			Integer[] candyLoc = {x,y};
+			Integer[] candyLoc = {y,x};
 			candyLocs.add(candyLoc);
 			step = step + 6;
 		}

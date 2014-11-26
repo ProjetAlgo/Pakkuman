@@ -12,7 +12,7 @@ Labyrinthe: 6 fois 8
 +   +---+---+---+---+   +---+   +
 |                               |
 +---+---+---+---+---+---+---+   +
-Elements du Labyrinthe: 
+Elements du Labyrinthe:
 	Monstres: 5
 	Bonbons: 3
 Emplacements:
